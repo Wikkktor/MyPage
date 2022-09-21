@@ -49,6 +49,18 @@ def create_access_token(*, sub: str, expires_delta: Optional[timedelta] = None) 
     )
 
 
+async def get_current_user(token: str = Depends(oauth2_bearer)):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username: str = payload.get("sub")
+        user_id: int = payload.get('id')
+        if username is None or user_id is None:
+            raise get_user_exception()
+        return {"username": username, "id": user_id}
+    except JWTError:
+        raise get_user_exception()
+
+
 def create_token(
         token_type: str,
         sub: str,
@@ -66,22 +78,10 @@ def create_token(
     return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
 
 
-def get_current_user(token: str = Depends(oauth2_bearer), db: Session = Depends(get_db)):
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
-        if username is None:
-            raise get_user_exception()
-        user = db.query(Users).filter(Users.username == username).first()
-        return user
-    except JWTError:
-        raise get_user_exception()
-
-
 @router.post("/login")
 def login(
         db: Session = Depends(get_db), form_data: OAuth2PasswordRequestForm = Depends()
-) -> Any:
+):
     """
     Getting the JWT for a user with data from oauth2 request body
     :param db: Database connection required
