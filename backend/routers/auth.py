@@ -1,13 +1,13 @@
 from fastapi import Depends, HTTPException, status, APIRouter
 from sqlalchemy.orm import Session
-from backend.database import get_db
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
-from typing import Optional, Any
-from backend.models import Users
+from typing import Optional
+from database import get_db
+from models import Users
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from jose import jwt, JWTError
-from backend.passwords import SECRET_KEY, ALGORITHM
+from passwords import SECRET_KEY, ALGORITHM
 
 router = APIRouter(
     prefix="/auth",
@@ -41,7 +41,7 @@ def authenticate(
     return user
 
 
-def create_access_token(*, sub: str, expires_delta: Optional[timedelta] = None) -> str:
+def create_access_token(*, sub: str, expires_delta: Optional[timedelta] = None):
     return create_token(
         token_type="access_token",
         sub=sub,

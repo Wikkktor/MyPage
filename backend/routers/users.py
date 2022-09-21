@@ -1,11 +1,9 @@
 from typing import Optional
 from fastapi import APIRouter, Depends
-from jose import jwt, JWTError
-from backend.passwords import SECRET_KEY, ALGORITHM
-from auth import oauth2_bearer, get_user_exception, get_password_hash, get_current_user
-from backend import schema
-from backend.models import Users
-from backend.database import get_db
+from .auth import get_user_exception, get_password_hash, get_current_user
+import schema
+from models import Users
+from database import get_db
 from sqlalchemy.orm import Session
 
 router = APIRouter(
@@ -17,8 +15,8 @@ router = APIRouter(
 
 @router.get("/")
 def get_logged_in_user(
-        user: dict = Depends(get_current_user),
         db: Session = Depends(get_db),
+        user: dict = Depends(get_current_user),
 ):
     """
     Function to display data for logged-in user
@@ -34,10 +32,10 @@ def get_logged_in_user(
     return user_model
 
 
-@router.post("/", response_model=schema.User)
+@router.post("/")
 def create_user(
-        user: schema.User,
-        db: Session = Depends(get_db)
+        db: Session = Depends(get_db),
+        user: dict = schema.User,
 ):
     """
     User creation function
@@ -58,11 +56,11 @@ def create_user(
     return success()
 
 
-@router.put("/", response_model=schema.User)
+@router.put("/")
 def update_user(
-        user: schema.User,
-        get_user: Depends(get_current_user),
-        db: Session = Depends(get_db)
+        db: Session = Depends(get_db),
+        user: dict = schema.User,
+        get_user: dict = Depends(get_current_user),
 ):
     """
     Update logged-in user
@@ -91,8 +89,8 @@ def update_user(
 
 @router.delete("/")
 def delete_logged_in_user(
-        user: Depends(get_current_user),
         db: Session = Depends(get_db),
+        user: dict = Depends(get_current_user),
 ):
     """
     Deletes logged-in user from database
