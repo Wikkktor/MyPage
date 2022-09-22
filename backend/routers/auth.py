@@ -4,6 +4,7 @@ from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from typing import Optional
 from database import get_db
 from models import Users
+from schema import Token
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from jose import jwt, JWTError
@@ -17,7 +18,7 @@ router = APIRouter(
 
 bcrypt_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-oauth2_bearer = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_bearer = OAuth2PasswordBearer(tokenUrl="auth/token")
 
 
 def get_password_hash(password):
@@ -52,11 +53,10 @@ def create_access_token(*, sub: str, expires_delta: Optional[timedelta] = None):
 async def get_current_user(token: str = Depends(oauth2_bearer)):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
-        user_id: int = payload.get('id')
-        if username is None or user_id is None:
+        user_id: int = payload.get('sub')
+        if user_id is None:
             raise get_user_exception()
-        return {"username": username, "id": user_id}
+        return {"id": user_id}
     except JWTError:
         raise get_user_exception()
 
@@ -78,7 +78,7 @@ def create_token(
     return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
 
 
-@router.post("/login")
+@router.post("/token", response_model=Token)
 def login(
         db: Session = Depends(get_db), form_data: OAuth2PasswordRequestForm = Depends()
 ):
