@@ -7,7 +7,7 @@ from database import get_db
 from sqlalchemy.orm import Session
 
 router = APIRouter(
-    prefix="/users",
+    prefix="/api/users",
     tags=['users'],
     responses={404: {"Description": "User was not found"}}
 )
