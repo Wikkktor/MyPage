@@ -2,7 +2,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends
 from .auth import get_user_exception, get_password_hash, get_current_user
 import schema
-from models import Users
+import models
 from database import get_db
 from sqlalchemy.orm import Session
 
@@ -26,7 +26,7 @@ def get_logged_in_user(
     """
     if user is None:
         raise get_user_exception()
-    user_model = db.query(Users).filter(Users.id == user.get("id")).first()
+    user_model = db.query(models.Users).filter(models.Users.id == user.get("id")).first()
     if user_model is None:
         return get_user_exception()
     return user_model
@@ -34,8 +34,8 @@ def get_logged_in_user(
 
 @router.post("/")
 def create_user(
+        user: schema.User,
         db: Session = Depends(get_db),
-        user: dict = schema.User,
 ):
     """
     User creation function
@@ -43,7 +43,7 @@ def create_user(
     :param db: database connection
     :return: new user in database
     """
-    user_model = Users()
+    user_model = models.Users()
     user_model.username = user.username
     user_model.email = user.email
     user_model.first_name = user.first_name
@@ -58,8 +58,8 @@ def create_user(
 
 @router.put("/")
 def update_user(
+        user: schema.User,
         db: Session = Depends(get_db),
-        user: dict = schema.User,
         get_user: dict = Depends(get_current_user),
 ):
     """
@@ -71,7 +71,7 @@ def update_user(
     """
     if get_user is None:
         raise get_user_exception()
-    user_modify = db.query(Users).filter(Users.id == get_user.get("id")).first()
+    user_modify = db.query(models.Users).filter(models.Users.id == get_user.get("id")).first()
     if user_modify is None:
         raise get_user_exception()
     user_modify.username = user.username
@@ -100,10 +100,10 @@ def delete_logged_in_user(
     """
     if user is None:
         raise get_user_exception()
-    delete_user = db.query(Users).filter(Users.id == user.get("id")).first()
+    delete_user = db.query(models.Users).filter(models.Users.id == user.get("id")).first()
     if delete_user is None:
         raise get_user_exception()
-    db.query(Users).filter(Users.id == user.get("id")).delete()
+    db.query(models.Users).filter(models.Users.id == user.get("id")).delete()
     db.commit()
 
     return success(200)
@@ -121,10 +121,10 @@ def delete_user(
     :param db: database connection
     :return: deletes selected in path parameter user
     """
-    user = db.query(Users).filter(Users.id == user_id).first()
+    user = db.query(models.Users).filter(models.Users.id == user_id).first()
     if user is None:
         raise get_user_exception()
-    db.query(Users).filter(Users.id == user_id).first().delete()
+    db.query(models.Users).filter(models.Users.id == user_id).delete()
     db.commit()
 
     return success(200)
@@ -139,7 +139,7 @@ def get_all_users(
     :param db: database connection
     :return:
     """
-    return db.query(Users).all()
+    return db.query(models.Users).all()
 
 
 def success(status_code: Optional[int] = 201):
