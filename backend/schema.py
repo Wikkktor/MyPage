@@ -16,3 +16,8 @@ class Todo(BaseModel):
     description: Optional[str]
     priority: int = Field(gt=0, lt=6)
     complete: bool
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
