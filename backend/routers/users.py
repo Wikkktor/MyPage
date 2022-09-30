@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 from fastapi import APIRouter, Depends
 from .auth import get_user_exception, get_password_hash, get_current_user
 import schema
@@ -33,7 +33,7 @@ def get_logged_in_user(
 
 
 @router.post("/")
-def create_user(
+async def create_user(
         user: schema.User,
         db: Session = Depends(get_db),
 ):
@@ -47,20 +47,13 @@ def create_user(
     if check_username:
         raise get_user_exception()
     user_model = models.Users()
-    user_model.username = user.username
-    user_model.email = user.email
-    user_model.first_name = user.first_name
-    user_model.last_name = user.last_name
-    user_model.hashed_password = get_password_hash(user.password)
-    user_model.phone_number = user.phone_number
-    db.add(user_model)
-    db.commit()
+    await create_update_user(user, user_model, db)
 
     return success()
 
 
 @router.put("/")
-def update_user(
+async def update_user(
         user: schema.User,
         db: Session = Depends(get_db),
         get_user: dict = Depends(get_current_user),
@@ -77,15 +70,7 @@ def update_user(
     user_modify = db.query(models.Users).filter(models.Users.id == get_user.get("id")).first()
     if user_modify is None:
         raise get_user_exception()
-    user_modify.username = user.username
-    user_modify.email = user.email
-    user_modify.first_name = user.first_name
-    user_modify.last_name = user.last_name
-    user_modify.hashed_password = get_password_hash(user.password)
-    user_modify.phone_number = user.phone_number
-
-    db.add(user_modify)
-    db.commit()
+    await create_update_user(user, user_modify, db)
 
     return success()
 
@@ -143,6 +128,18 @@ def get_all_users(
     :return:
     """
     return db.query(models.Users).all()
+
+
+async def create_update_user(data, model, db):
+    model.username = data.username
+    model.email = data.email
+    model.first_name = data.first_name
+    model.last_name = data.last_name
+    model.hashed_password = get_password_hash(data.password)
+    model.phone_number = data.phone_number
+    db.add(model)
+    db.commit()
+    return True
 
 
 def success(status_code: Optional[int] = 201):
