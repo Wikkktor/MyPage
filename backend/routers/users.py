@@ -1,6 +1,6 @@
 from typing import Optional, List
 from fastapi import APIRouter, Depends
-from .auth import get_user_exception, get_password_hash, get_current_user, authenticate
+from .auth import get_user_exception, get_password_hash, get_current_user, authenticate, create_access_token
 import schema
 import models
 from database import get_db
@@ -51,8 +51,10 @@ async def create_user(
         raise get_user_exception()
     user_model = models.Users()
     await create_update_user(user, user_model, db)
-
-    return success()
+    token = create_access_token(sub=user_model.id)
+    return (
+        {"token": f"{token}"}
+    )
 
 
 @router.put("/")
