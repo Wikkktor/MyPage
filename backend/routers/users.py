@@ -43,6 +43,9 @@ def create_user(
     :param db: database connection
     :return: new user in database
     """
+    check_username = db.query(models.Users).filter(models.Users.username == user.username).first()
+    if check_username:
+        raise get_user_exception()
     user_model = models.Users()
     user_model.username = user.username
     user_model.email = user.email
