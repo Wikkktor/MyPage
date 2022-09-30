@@ -32,7 +32,7 @@ const Register = () => {
         if (!response.ok){
             setErrorMessage(data.detail);
         } else {
-            setToken(data.access_token)
+            setToken(data.token)
         }
     }
 
