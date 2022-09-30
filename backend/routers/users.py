@@ -1,6 +1,6 @@
 from typing import Optional, List
 from fastapi import APIRouter, Depends
-from .auth import get_user_exception, get_password_hash, get_current_user
+from .auth import get_user_exception, get_password_hash, get_current_user, authenticate
 import schema
 import models
 from database import get_db
@@ -29,7 +29,10 @@ def get_logged_in_user(
     user_model = db.query(models.Users).filter(models.Users.id == user.get("id")).first()
     if user_model is None:
         return get_user_exception()
-    return user_model
+    return {
+        "id": user_model.id,
+        "email": user_model.email
+    }
 
 
 @router.post("/")
@@ -139,7 +142,7 @@ async def create_update_user(data, model, db):
     model.phone_number = data.phone_number
     db.add(model)
     db.commit()
-    return True
+    return model
 
 
 def success(status_code: Optional[int] = 201):
