@@ -15,17 +15,14 @@ models.Base.metadata.create_all(bind=engine)
 TEMPLATES = Jinja2Templates(directory="templates")
 
 
-@app.get('/', status_code=200)
+@app.get('/api', status_code=200)
 async def test(
         request: Request
         ):
     """
     Root get
     """
-    return TEMPLATES.TemplateResponse(
-        "index.html",
-        {"request": request}
-    )
+    return {"message": "Test success"}
 
 
 if __name__ == "__main__":
