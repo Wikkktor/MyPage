@@ -4,24 +4,21 @@ import {Outlet, Link} from "react-router-dom";
 const Navbar = () => {
     return (
         <>
-            <nav className="level is-mobile">
-                <p className="level-item has-text-centered">
-                    <Link to='/' className="link is-info">Home</Link>
-                </p>
-                <p className="level-item has-text-centered">
-                    <Link to='/#portfolio' className="link is-info">Menu</Link>
-                </p>
-                <p className="level-item has-text-centered">
-                    <h2>Wiktor Karaszewicz</h2>
-                </p>
-                <p className="level-item has-text-centered">
-                    <Link to="/todo" className="link is-info">Todo</Link>
-                </p>
-                <p className="level-item has-text-centered">
-                    <Link to='/contact' className="link is-info">Contact</Link>
-                </p>
-            </nav>
-                <Outlet/>
+            <div className="ui vertical inverted sidebar menu">
+                <div>
+                    <Link to='/' className="active item">Main page</Link>
+                    <a href='/#about_me' className='item'>About me</a>
+                    <a href='/#experience' className='item'>Experience</a>
+                    <a href='/#portfolio' className='item'>Portfolio</a>
+                    <a href='/#education' className='item'>Education</a>
+                </div>
+                <div>
+                <Link to='/login' className="item">Login</Link>
+                <Link to='/register' className="item">Signup</Link>
+                </div>
+            </div>
+            <Outlet/>
+
         </>
     )
 }
