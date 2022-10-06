@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
 
-body, body.pushable>.pusher {
+body, body.pushable > .pusher {
     color: white;
     background: rgb(0, 0, 0) !important;
 }
+
 .header {
-    color: white!important;
+    color: white !important;
 }
+
 .mt-1 {
     margin-top: 1rem;
 }
@@ -53,54 +55,68 @@ h1, h2, h3, h4, h5, h6, p, span, li, a, button {
     font-size: 16px;
     color: #262626 !important;
 }
+
 .ui.secondary.inverted.pointing.menu {
-    border-color: transparent!important;
+    border-color: transparent !important;
 }
+
 .raised, .card {
     transition: 0.5s;
 }
+
 .big-margin h1 {
     display: flex;
     justify-content: space-between;
 }
+
 h1 .icon {
-    color: #9d4edd!important;
+    color: #9d4edd !important;
 }
+
 #skills .column .column {
-    background: #140152!important;
+    background: rgb(36, 0, 70);
+    background: linear-gradient(243deg, rgba(36, 0, 70, 1) 11%, rgba(20, 1, 82, 1) 100%);
     padding: 10px 30px;
     font-size: 18px;
-    margin: 10px!important;
+    margin: 10px !important;
     text-align: center;
-    width: fit-content!important;
+    width: fit-content !important;
     transition: 0.5s;
 }
+
 .ui form {
-    padding: 20px!important;
-    background: #062726;
+    padding: 20px !important;
+    background: #240046;
     transition: 0.5s;
 }
+
 .ui form label {
-    color: white!important;
+    color: white !important;
 }
+
 .ui form button {
-    background: #461177!important;
-    color: white!important;
+    background: black!important;
+    color: white !important;
     width: 130px;
 }
+h1.ui.header {
+    font-size: 2.6rem;
+}
 .ui form button:hover {
-    background: #9d4edd!important;;
+    background: rgb(78,33,120);
+background: linear-gradient(243deg, rgba(78,33,120,1) 6%, rgba(97,0,255,1) 51%, rgba(97,79,154,1) 100%)!important;
 }
 
 .raised {
-    background: #242423!important;
+    background: #240046 !important;
     box-shadow: 0 4px 7px 18px rgb(254 254 255 / 0%), 0 2px 10px 0 rgb(34 36 38 / 15%)
 }
+
 .card .header {
-    color: black!important;
+    color: black !important;
 }
 
-.raised:hover, .card:hover, #skills .column .column:hover, .ui form:hover {
+.raised:hover, .card:hover, #skills .column .column:hover {
     transform: translateY(-10px);
 }
 
@@ -110,4 +126,8 @@ html {
 
 .big-margin {
     margin: 6rem 0;
+}
+.footer {
+    text-align: center;
+    padding: 20px;
 }
