@@ -1,18 +1,43 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Navbar from "../../components/navbar";
 import Footer from "../../components/Footer";
 import {Link} from "react-router-dom";
-import './App.css'
-import '../../assets/wiktor.jpeg'
-import wiktor from '../../assets/wiktor.jpeg'
-import beautybon from '../../assets/beautybon.png'
-import danky from '../../assets/danky.png'
-import salony from '../../assets/salony.png'
-import auschwitz from '../../assets/auschwitz.png'
-import uzyjto from '../../assets/uzyjto.png'
+import './App.css';
+import '../../assets/wiktor.jpeg';
+import wiktor from '../../assets/wiktor.jpeg';
+import beautybon from '../../assets/beautybon.png';
+import danky from '../../assets/danky.png';
+import salony from '../../assets/salony.png';
+import auschwitz from '../../assets/auschwitz.png';
+import uzyjto from '../../assets/uzyjto.png';
+import ErrorMessage from "../../components/ErrorMessage";
 
 
 const Home = () => {
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+    const [reply, setReply] = useState("");
+
+    const submitContact = async () => {
+        const requestOptions = {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                    email: email,
+                    message: message,
+                }
+            )
+        };
+        const response = await fetch("api/send-email", requestOptions)
+        const data = await response.json()
+        setReply(data.detail)
+        }
+
+
+    const handleContact = (e) => {
+        e.preventDefault()
+        submitContact()
+        }
 
     return (
         <>
@@ -30,6 +55,8 @@ const Home = () => {
                                 <a href='/#experience' className='item'>Experience</a>
                                 <a href='/#portfolio' className='item'>Portfolio</a>
                                 <a href='/#education' className='item'>Education</a>
+                                <a href='/#skills' className='item'>Skills</a>
+                                <a href='/#skills' className='item'>Contact</a>
                                 <div className="right item">
                                     <Link to="/login" className="ui inverted button">Log in</Link>
                                     <Link to="/register" className="ui inverted button">Sign Up</Link>
@@ -58,10 +85,11 @@ const Home = () => {
                         </div>
                     </div>
                     <div id='about_me' className='ui container big-margin'>
-                        <h1 className='ui header'>About me</h1>
+                        <h1 className='ui header'>About me <i style={{transform: 'rotate(45deg)'}}
+                                                              className="hand point down icon"></i></h1>
                         <div className="ui raised segment">
                             <p className='mytext'>
-                                <p>Hi! I am Wiktor Karaszewicz Web developer, I come from Poland and live
+                                <p>Hi! I am Wiktor Karaszewicz Web developer, I live
                                     in Warsaw.
                                 </p>
                                 <p>
@@ -83,7 +111,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div id='experience' className='ui container big-margin'>
-                        <h1 className='ui header'>Experience</h1>
+                        <h1 className='ui header'>Experience <i className="chart line icon"></i></h1>
                         <div className='ui stackable two column grid'>
                             <div className='column'>
                                 <div className="ui raised segment max-height">
@@ -130,7 +158,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div id='portfolio' className='ui container big-margin'>
-                        <h1 className='ui header'>Portfolio</h1>
+                        <h1 className='ui header'>Portfolio <i className="code icon"></i></h1>
                         <div className='ui special cards grid stackable three column'>
                             <div className='column'>
                                 <div className="ui card">
@@ -244,17 +272,78 @@ const Home = () => {
                         </div>
                     </div>
                     <div id='education' className='ui container big-margin'>
-                        <h1 className='ui header'>Education</h1>
+                        <h1 className='ui header'>Education <i className="graduation cap icon"></i></h1>
                         <div className="ui raised segment">
-                            <p className="mytext">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
-                                egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
-                                Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris
-                                placerat eleifend leo.</p>
+                            <p className="mytext">
+                                <h3 className='ui header'>Polish-Japanese Academy of Information Technology</h3>
+                                <h4 className='ui header no-m'>2022 - 2026 Engineer</h4>
+                                Faculty of Computer Science, Warsaw, Poland.
+                            </p>
+                        </div>
+                        <div className="ui raised segment">
+                            <p className="mytext">
+                                <h3 className='ui header'>Lazarski University</h3>
+                                <h4 className='ui header no-m'>2020 - 2023 Bachelor</h4>
+                                Faculty of Economics, Warsaw, Poland.
+                            </p>
                         </div>
 
                     </div>
 
+                    <div id='skills' className='ui container big-margin'>
+                        <h1 className='ui header'>Skills <i className="microchip icon"></i></h1>
+                        <div className="ui grid">
+                            <div className="stackable eight very relaxed  column row">
+                                <div className="column">PYTHON</div>
+                                <div className="column">DJANGO</div>
+                                <div className="column">FASTAPI</div>
+                                <div className="column">FLASK</div>
+                                <div className="column">RESTAPI</div>
+                                <div className="column">JAVASCRIPT</div>
+                                <div className="column">REACT</div>
+                                <div className="column">HTML5</div>
+                                <div className="column">CSS3</div>
+                                <div className="column">BOOTSTRAP</div>
+                                <div className="column">SEMANTIC UI</div>
+                            </div>
 
+                        </div>
+                    </div>
+                    <div id='contact' className='ui container big-margin'>
+                        <div className="ui stackable grid">
+                            <div className="row">
+                                <div className="three wide column"></div>
+                                <div className="ten wide column">
+                                    <h1 className='ui header'>Contact <i className="graduation cap icon"></i></h1>
+                                    <form className="ui form" onSubmit={handleContact}>
+                                        <div className="field">
+                                            <label>Your mail</label>
+                                            <input
+                                                required
+                                                type="text"
+                                                name="first-name"
+                                                value={email}
+                                                onChange={(e)=> setEmail(e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="field">
+                                            <label>Your message</label>
+                                            <textarea
+                                                value={message}
+                                                onChange={(e)=> setMessage(e.target.value)}
+                                                required>
+                                            </textarea>
+                                        </div>
+                                        <ErrorMessage message={reply}/>
+                                        <div style={{width: '100%', textAlign: 'center'}}>
+                                            <button className="ui button" type="submit">Send</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div className="three wide column"></div>
+                            </div>
+                        </div>
+                    </div>
                     <Footer/>
                 </div>
             </section>
