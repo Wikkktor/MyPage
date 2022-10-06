@@ -1,51 +1,19 @@
-import React, {useContext, useEffect, useState} from "react";
-import Register from "./components/Register";
-import Login from "./components/Login";
-import Header from "./components/Header";
-import {UserContext} from "./context/UserContext";
+import React from "react";
+import Home from "./pages/home";
+import LoginPage from "./pages/login";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 
 const App = () => {
-    const [message, setMessage] = useState("");
-    const [token] = useContext(UserContext)
 
-    const getWelcomeMessage = async () => {
-        const requestOptions = {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        };
-        const response = await fetch("/api", requestOptions);
-        const data = await response.json();
-
-        if (!response.ok) {
-            console.log("Something messed up");
-        } else {
-            setMessage(data.message)
-        }
-    };
-    useEffect(() => {
-        getWelcomeMessage();
-    }, [])
     return (
-        <>
-            <Header title={message}/>
-            <div className="columns">
-                <div className="column"></div>
-                <div className="column m-5 is-two-thirds">
-                    {!token ? (
-                            <div className="columns">
-                                <Register/> <Login/>
-                            </div>
-                    ) : (
-                        <p>Table</p>
-                    )}
-                </div>
-                <div className="column"></div>
-            </div>
-        </>
-    );
+        <BrowserRouter>
+            <Routes>
+                <Route index element={<Home/>}/>
+                <Route path="/login" element={<LoginPage/>}/>
+            </Routes>
+        </BrowserRouter>
+    )
 }
 
 export default App;
