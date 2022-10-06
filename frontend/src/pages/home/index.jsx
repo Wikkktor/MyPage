@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Navbar from "../../components/navbar";
 import Footer from "../../components/Footer";
 import {Link} from "react-router-dom";
 import './App.css';
-import '../../assets/wiktor.jpeg';
 import wiktor from '../../assets/wiktor.jpeg';
 import beautybon from '../../assets/beautybon.png';
 import danky from '../../assets/danky.png';
@@ -11,12 +10,14 @@ import salony from '../../assets/salony.png';
 import auschwitz from '../../assets/auschwitz.png';
 import uzyjto from '../../assets/uzyjto.png';
 import ErrorMessage from "../../components/ErrorMessage";
+import {UserContext} from "../../context/UserContext";
 
 
 const Home = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
     const [reply, setReply] = useState("");
+    const [token] = useContext(UserContext)
 
     const submitContact = async () => {
         const requestOptions = {
@@ -31,13 +32,13 @@ const Home = () => {
         const response = await fetch("api/send-email", requestOptions)
         const data = await response.json()
         setReply(data.detail)
-        }
+    }
 
 
     const handleContact = (e) => {
         e.preventDefault()
         submitContact()
-        }
+    }
 
     return (
         <>
@@ -57,10 +58,17 @@ const Home = () => {
                                 <a href='/#education' className='item'>Education</a>
                                 <a href='/#skills' className='item'>Skills</a>
                                 <a href='/#skills' className='item'>Contact</a>
-                                <div className="right item">
-                                    <Link to="/login" className="ui inverted button">Log in</Link>
-                                    <Link to="/register" className="ui inverted button">Sign Up</Link>
-                                </div>
+                                {!token ? (
+                                    <div className="right item">
+                                        <Link to="/login" className="ui inverted button">Log in</Link>
+                                        <Link to="/register" className="ui inverted button">Sign Up</Link>
+                                    </div>
+                                ) : (
+                                    <div className="right item">
+                                        <Link to="/todo" className="ui inverted button">Todo</Link>
+                                        <Link to="/jokes" className="ui inverted button">Jokes</Link>
+                                    </div>
+                                )}
                             </div>
                         </div>
                         <div className="ui text container">
@@ -199,7 +207,7 @@ const Home = () => {
                                     </div>
                                     <div className="extra content">
                                     <span>
-                                        Django, Semantic Ui, JavaScript, PostgreSQL, PostGIS
+                                        Django, Semantic Ui, JavaScript, PostgreSQL, PostGIS, Ajax
                                     </span>
                                     </div>
                                 </div>
@@ -242,7 +250,7 @@ const Home = () => {
                                     </div>
                                     <div className="extra content">
                                     <span>
-                                        Django, PostgreSQL, JavaScript
+                                        Django, PostgreSQL, JavaScript, Ajax
                                     </span>
                                     </div>
                                 </div>
@@ -264,7 +272,7 @@ const Home = () => {
                                     </div>
                                     <div className="extra content">
                                     <span>
-                                        Django, jQuery, JavaScript, Bootstrap5, 2 languages
+                                        Django, jQuery, JavaScript, Bootstrap5, Multilingual
                                     </span>
                                     </div>
                                 </div>
@@ -323,14 +331,14 @@ const Home = () => {
                                                 type="text"
                                                 name="first-name"
                                                 value={email}
-                                                onChange={(e)=> setEmail(e.target.value)}
+                                                onChange={(e) => setEmail(e.target.value)}
                                             />
                                         </div>
                                         <div className="field">
                                             <label>Your message</label>
                                             <textarea
                                                 value={message}
-                                                onChange={(e)=> setMessage(e.target.value)}
+                                                onChange={(e) => setMessage(e.target.value)}
                                                 required>
                                             </textarea>
                                         </div>

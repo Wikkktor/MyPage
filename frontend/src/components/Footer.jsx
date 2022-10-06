@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
     return (
         <>
-            <footer className="footer">
+            <footer className="footer" >
                 <div className="content has-text-centered">
                     <p>
                         <strong>Wiktor Karaszewicz Portfolio</strong> The source code is
