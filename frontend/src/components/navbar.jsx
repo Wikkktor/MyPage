@@ -11,10 +11,12 @@ const Navbar = () => {
                     <a href='/#experience' className='item'>Experience</a>
                     <a href='/#portfolio' className='item'>Portfolio</a>
                     <a href='/#education' className='item'>Education</a>
+                    <a href='/#skills' className='item'>Skills</a>
+                    <a href='/#skills' className='item'>Contact</a>
                 </div>
                 <div>
-                <Link to='/login' className="item">Login</Link>
-                <Link to='/register' className="item">Signup</Link>
+                    <Link to='/login' className="item">Login</Link>
+                    <Link to='/register' className="item">Signup</Link>
                 </div>
             </div>
             <Outlet/>
