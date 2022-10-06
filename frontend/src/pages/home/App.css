@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mt-3 {
+    margin-top: 3rem;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, li, a, button {
+    font-family: 'Ubuntu', sans-serif !important;
+}
+
+.max-height {
+    height: 100%;
+}
+
+.card {
+    width: 100% !important;
+    height: 100%;
+}
+
+.no-m {
+    margin: 0 !important;
+}
+
+.indent-text {
+    padding-left: 10px;
+}
+
+.is-flex-direction-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.mytext, .description {
+    font-family: 'Ubuntu', sans-serif !important;
+    color: black;
+    font-size: 18px;
+}
+
+.extra span {
+    font-size: 16px;
+    color: #262626 !important;
+}
+
+.raised, .card {
+    transition: 0.5s;
+}
+
+.raised:hover, .card:hover {
+    transform: translateY(-10px);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.big-margin {
+    margin: 6rem 0;
+}
