@@ -2,7 +2,7 @@ from fastapi import FastAPI, APIRouter, Request
 from fastapi.templating import Jinja2Templates
 import models
 from database import engine
-from routers import auth, users
+from routers import auth, users, todos
 
 
 root_router = APIRouter()
@@ -10,6 +10,7 @@ app = FastAPI()
 
 app.include_router(auth.router)
 app.include_router(users.router)
+app.include_router(todos.router)
 
 models.Base.metadata.create_all(bind=engine)
 TEMPLATES = Jinja2Templates(directory="templates")
