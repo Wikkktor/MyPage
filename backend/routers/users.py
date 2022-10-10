@@ -31,7 +31,7 @@ def get_logged_in_user(
         return get_user_exception()
     return {
         "id": user_model.id,
-        "email": user_model.email
+        "username": user_model.username
     }
 
 
@@ -137,11 +137,7 @@ def get_all_users(
 
 async def create_update_user(data, model, db):
     model.username = data.username
-    model.email = data.email
-    model.first_name = data.first_name
-    model.last_name = data.last_name
     model.hashed_password = get_password_hash(data.password)
-    model.phone_number = data.phone_number
     db.add(model)
     db.commit()
     return model
