@@ -4,11 +4,7 @@ from pydantic import BaseModel, Field
 
 class User(BaseModel):
     username: str
-    email: Optional[str]
-    first_name: str
-    last_name: str
     password: str
-    phone_number: str
 
 
 class Todo(BaseModel):
