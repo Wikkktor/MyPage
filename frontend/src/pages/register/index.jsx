@@ -2,14 +2,13 @@ import React, {useContext, useState} from "react";
 
 import {UserContext} from "../../context/UserContext";
 import ErrorMessage from "../../components/ErrorMessage";
+import {useNavigate} from "react-router-dom";
 
 const RegisterPage = () => {
+    const navigate = useNavigate()
     const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [first_name, setFirst_name] = useState("");
-    const [last_name, setLast_name] = useState("");
     const [password, setPassword] = useState("");
-    const [phone_number, setPhone_number] = useState("");
+    const [password2, setPassword2] = useState("")
     const [errorMessage, setErrorMessage] = useState("");
     const [, setToken] = useContext(UserContext);
 
@@ -19,11 +18,7 @@ const RegisterPage = () => {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
                 username: username,
-                email: email,
-                first_name: first_name,
-                last_name: last_name,
                 password: password,
-                phone_number: phone_number
             })
         };
         const response = await fetch("/api/users/", requestOptions);
@@ -33,15 +28,18 @@ const RegisterPage = () => {
             setErrorMessage(data.detail);
         } else {
             setToken(data.token)
+            navigate('/')
         }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (password.length > 5) {
+        if (password.length > 5 && password === password2) {
             submitRegistration()
+        } else if (password.length < 6) {
+            setErrorMessage("Password must be greater than 5 characters");
         } else {
-            setErrorMessage("Password must be greater than 5 charactes");
+            setErrorMessage("Password don't match")
         }
 
     }
@@ -66,45 +64,7 @@ const RegisterPage = () => {
                                 />
                             </div>
                         </div>
-                        <div className="field">
-                            <label className="label">Email</label>
-                            <div className="control">
-                                <input
-                                    type='email'
-                                    placeholder='Enter your email'
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    className="input"
-                                    required
-                                />
-                            </div>
-                        </div>
-                        <div className="field">
-                            <label className="label">First Name</label>
-                            <div className="control">
-                                <input
-                                    type='text'
-                                    placeholder='Enter your first name'
-                                    value={first_name}
-                                    onChange={(e) => setFirst_name(e.target.value)}
-                                    className="input"
-                                    required
-                                />
-                            </div>
-                        </div>
-                        <div className="field">
-                            <label className="label">Last Name</label>
-                            <div className="control">
-                                <input
-                                    type='text'
-                                    placeholder='Enter your last name'
-                                    value={last_name}
-                                    onChange={(e) => setLast_name(e.target.value)}
-                                    className="input"
-                                    required
-                                />
-                            </div>
-                        </div>
+
                         <div className="field">
                             <label className="label">Password</label>
                             <div className="control">
@@ -119,19 +79,19 @@ const RegisterPage = () => {
                             </div>
                         </div>
                         <div className="field">
-                            <label className="label">Phone number</label>
+                            <label className="label">Password again</label>
                             <div className="control">
                                 <input
-                                    type='tel'
+                                    type='password'
                                     placeholder='Enter your username'
-                                    value={phone_number}
-                                    onChange={(e) => setPhone_number(e.target.value)}
+                                    value={password2}
+                                    onChange={(e) => setPassword2(e.target.value)}
                                     className="input"
                                     required
                                 />
                             </div>
-                            <ErrorMessage message={errorMessage}/>
                         </div>
+                        <ErrorMessage message={errorMessage}/>
                         <div style={{width: '100%', textAlign: 'center'}}>
                                     <button className="ui button" type="submit">Register</button>
                                 </div>
