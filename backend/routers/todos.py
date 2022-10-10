@@ -14,7 +14,7 @@ router = APIRouter(
 
 
 @router.get("/")
-def get_user_todos(
+def get_todos(
         db: Session = Depends(get_db),
         user: dict = Depends(get_current_user),
 ):
@@ -24,7 +24,7 @@ def get_user_todos(
 
 
 @router.post("/")
-def get_user_todos(
+def create_todo(
         todo: schema.Todo,
         db: Session = Depends(get_db),
         user: dict = Depends(get_current_user),
@@ -33,7 +33,6 @@ def get_user_todos(
         raise get_user_exception()
     todo_model = models.Todos()
     todo_model.title = todo.title
-    todo_model.description = todo.description
     todo_model.priority = todo.priority
     todo_model.owner_id = user.get("id")
     db.add(todo_model)
@@ -42,7 +41,7 @@ def get_user_todos(
 
 
 @router.put("/{todo_id}")
-def get_user_todos(
+def update_todo(
         todo: schema.Todo,
         todo_id: int,
         db: Session = Depends(get_db),
@@ -55,7 +54,6 @@ def get_user_todos(
     if not todo_model:
         raise does_not_exist()
     todo_model.title = todo.title
-    todo_model.description = todo.description
     todo_model.priority = todo.priority
     todo_model.owner_id = user.get("id")
     db.add(todo_model)
