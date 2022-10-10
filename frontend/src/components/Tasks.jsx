@@ -39,7 +39,7 @@ const Tasks = () => {
                                 task={task.id}
                             />
                             <UpdateTask
-                                task={task.id}
+                                task={task}
                             />
                         </div>
                     </div>
