@@ -95,8 +95,8 @@ h1 .icon {
 }
 
 .ui form button {
-    background: black!important;
-    color: white !important;
+    background: black;
+    color: white;
     width: 130px;
 }
 h1.ui.header {
@@ -104,7 +104,7 @@ h1.ui.header {
 }
 .ui form button:hover {
     background: rgb(78,33,120);
-background: linear-gradient(243deg, rgba(78,33,120,1) 6%, rgba(97,0,255,1) 51%, rgba(97,79,154,1) 100%)!important;
+background: linear-gradient(243deg, rgba(78,33,120,1) 6%, rgba(97,0,255,1) 51%, rgba(97,79,154,1) 100%);
 }
 
 .raised {
@@ -133,4 +133,55 @@ html {
 }
 ::placeholder {
     color: black!important;
+}
+.todoapp {
+    margin-top: 10vh;
+}
+.center {
+    text-align: center;
+}
+.todoform {
+    width: 80%;
+    margin: auto;
+}
+.todoform .field {
+    display: flex;
+    flex-direction: row;
+}
+.todoform button {
+    height: 60px;
+}
+.todoform .field input {
+    font-size: 18px!important;
+}
+.todoform .field input[type=number] {
+    margin: 0 5px;
+    width: 120px;
+}
+.todo_submit {
+        background: #38a3a5!important;
+    color: white!important;
+    font-size: 18px!important;
+}
+.todo_submit:hover {
+        background: #06d6a0!important;
+}
+#todolist {
+    color: black;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#todolist i {
+    font-size: 30px;
+    margin: 0 5px;
+}
+#priority {
+    margin: 0 10px;
+    font-size: 18px;
+}
+#text_todo {
+    display: flex;
+    align-self: center;
 }
