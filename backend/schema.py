@@ -9,7 +9,6 @@ class User(BaseModel):
 
 class Todo(BaseModel):
     title: str = Field(min_length=1)
-    description: Optional[str]
     priority: int = Field(gt=0, lt=6)
 
 
