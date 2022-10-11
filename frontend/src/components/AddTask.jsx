@@ -33,6 +33,8 @@ const AddTask = () => {
         if (task.length > 2 && priority < 6 && priority > 0) {
             add_new_task()
             setErrorMessage("")
+            setTask("")
+            setPriority("")
         } else if (priority > 5 || priority < 1) {
             setErrorMessage("Priority must be between 1 - 5")
         } else {
@@ -48,13 +50,15 @@ const AddTask = () => {
                            value={task}
                            onChange={(e) => setTask(e.target.value)}
                            placeholder="Enter your task"/>
-                    <input type='number'
-                           value={priority}
-                           onChange={(e) => setPriority(e.target.value)}
-                           placeholder='priority'/>
-                    <button className='ui button todo_submit' type='submit'>
-                        Add
-                    </button>
+                    <div className='responsive_form'>
+                        <input type='number'
+                               value={priority}
+                               onChange={(e) => setPriority(e.target.value)}
+                               placeholder='priority'/>
+                        <button className='ui button todo_submit' type='submit'>
+                            Add
+                        </button>
+                    </div>
                 </div>
                 <ErrorMessage message={errorMessage}/>
             </form>
