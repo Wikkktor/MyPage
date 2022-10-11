@@ -1,14 +1,12 @@
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom/client";
 import React from 'react';
 import App from './App';
 import {UserProvider} from "./context/UserContext";
 
 
-ReactDOM.render(
-    <React.StrictMode>
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
         <UserProvider>
-            <App tab="home"/>
+            <App/>
         </UserProvider>
-    </React.StrictMode>,
-    document.getElementById('root')
 );
