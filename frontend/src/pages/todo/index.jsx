@@ -14,15 +14,10 @@ const Todo = () => {
     return (
         <>
             <section className='todoapp'>
-                <div className='ui grid stackable'>
-                    <div className="four wide column"></div>
-
-                    <div className="eight wide column">
-                        <h1 className='ui header center'>Todo list</h1>
-                        <AddTask/>
-                        <Tasks/>
-                    </div>
-                    <div className="four wide column"></div>
+                <div className='ui container'>
+                    <h1 className='ui header center'>Todo list</h1>
+                    <AddTask/>
+                    <Tasks />
                 </div>
             </section>
         </>
