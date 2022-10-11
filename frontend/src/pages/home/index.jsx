@@ -17,7 +17,7 @@ const Home = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
     const [reply, setReply] = useState("");
-    const [token] = useContext(UserContext)
+    const [token, setToken] = useContext(UserContext)
 
     const submitContact = async () => {
         const requestOptions = {
@@ -33,12 +33,17 @@ const Home = () => {
         const data = await response.json()
         setReply(data.detail)
     }
+    const handleLogout = () => {
+        setToken(null);
+    };
 
 
     const handleContact = (e) => {
         e.preventDefault()
         submitContact()
     }
+
+
 
     return (
         <>
@@ -67,6 +72,7 @@ const Home = () => {
                                     <div className="right item">
                                         <Link to="/todo" className="ui inverted button">Todo</Link>
                                         <Link to="/jokes" className="ui inverted button">Jokes</Link>
+                                        <button className="ui inverted button" onClick={handleLogout}>Logout</button>
                                     </div>
                                 )}
                             </div>
@@ -96,7 +102,7 @@ const Home = () => {
                         <h1 className='ui header'>About me <i style={{transform: 'rotate(45deg)'}}
                                                               className="hand point down icon"></i></h1>
                         <div className="ui raised segment">
-                            <p className='mytext'>
+                            <div className='mytext'>
                                 <p>Hi! I am Wiktor Karaszewicz Web developer, I live
                                     in Warsaw.
                                 </p>
@@ -115,7 +121,7 @@ const Home = () => {
                                 <p>
                                     Currently I am a student of IT subjects in English working as a web developer.
                                 </p>
-                            </p>
+                            </div>
                         </div>
                     </div>
                     <div id='experience' className='ui container big-margin'>
@@ -282,18 +288,18 @@ const Home = () => {
                     <div id='education' className='ui container big-margin'>
                         <h1 className='ui header'>Education <i className="graduation cap icon"></i></h1>
                         <div className="ui raised segment">
-                            <p className="mytext">
+                            <div className="mytext">
                                 <h3 className='ui header'>Polish-Japanese Academy of Information Technology</h3>
                                 <h4 className='ui header no-m'>2022 - 2026 Engineer</h4>
                                 Faculty of Computer Science, Warsaw, Poland.
-                            </p>
+                            </div>
                         </div>
                         <div className="ui raised segment">
-                            <p className="mytext">
+                            <div className="mytext">
                                 <h3 className='ui header'>Lazarski University</h3>
                                 <h4 className='ui header no-m'>2020 - 2023 Bachelor</h4>
                                 Faculty of Economics, Warsaw, Poland.
-                            </p>
+                            </div>
                         </div>
 
                     </div>
