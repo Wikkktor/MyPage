@@ -17,7 +17,7 @@ const Home = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
     const [reply, setReply] = useState("");
-    const [token, setToken] = useContext(UserContext)
+    const [token] = useContext(UserContext)
 
     const submitContact = async () => {
         const requestOptions = {
@@ -33,9 +33,6 @@ const Home = () => {
         const data = await response.json()
         setReply(data.detail)
     }
-    const handleLogout = () => {
-        setToken(null);
-    };
 
 
     const handleContact = (e) => {
@@ -72,7 +69,6 @@ const Home = () => {
                                     <div className="right item">
                                         <Link to="/todo" className="ui inverted button">Todo</Link>
                                         <Link to="/jokes" className="ui inverted button">Jokes</Link>
-                                        <button className="ui inverted button" onClick={handleLogout}>Logout</button>
                                     </div>
                                 )}
                             </div>
@@ -129,7 +125,7 @@ const Home = () => {
                         <div className='ui stackable two column grid'>
                             <div className='column'>
                                 <div className="ui raised segment max-height">
-                                    <p className='mytext'>
+                                    <div className='mytext'>
                                         <div className='is-flex-direction-row'
                                              style={{justifyContent: 'space-between'}}>
                                             <h2 className='ui header'>Junior Web Developer</h2>
@@ -145,12 +141,12 @@ const Home = () => {
                                             <li>Administration of created systems</li>
                                             <li>Web development in html css js from graphic designers</li>
                                         </ul>
-                                    </p>
+                                    </div>
                                 </div>
                             </div>
                             <div className='column'>
                                 <div className="ui raised segment max-height">
-                                    <p className='mytext'>
+                                    <div className='mytext'>
                                         <div className='is-flex-direction-row'
                                              style={{justifyContent: 'space-between'}}>
                                             <h2 className='ui header'>Webshop Administrator</h2>
@@ -166,7 +162,7 @@ const Home = () => {
                                             <li>Updating erp systems and related applications</li>
                                             <li>Taking care of the proper operation of resources on the server</li>
                                         </ul>
-                                    </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
