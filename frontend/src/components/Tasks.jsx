@@ -28,15 +28,15 @@ const Tasks = () => {
     if (tasks) {
         return (
             <>
-                {tasks.map((task) => (
-                    <div className="ui segment" id='todolist'>
+                {tasks.sort((a, b) => b.priority - a.priority).map((task) => (
+                    <div key={task.id} className="ui segment" id='todolist'>
                         <div id='text_todo'>
                             <span id='priority'>{task.priority}</span>
                             <span>{task.title}</span>
                         </div>
                         <div>
                             <DeleteTask
-                                task={task.id}
+                                task={task}
                             />
                             <UpdateTask
                                 task={task}
