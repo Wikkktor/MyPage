@@ -5,10 +5,10 @@ const Footer = () => {
         <>
             <footer className="footer">
                 <div className="content has-text-centered">
-                    <p>
+                    <div>
                         <strong>Wiktor Karaszewicz Portfolio</strong> The source code is
                         on github <a href="http://github.com/wikkktor/mypage">Check</a>.
-                    </p>
+                    </div>
                 </div>
             </footer>
         </>
