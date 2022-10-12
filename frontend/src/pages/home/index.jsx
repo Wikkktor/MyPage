@@ -286,7 +286,7 @@ const Home = () => {
                                         <img alt='mypage' src={mypage}/>
                                     </div>
                                     <div className="content">
-                                        <a href='https://auschwitzcracow.com' className="header">Resume page</a>
+                                        <a href='https://wiktorkaraszewicz.herokuapp.com/' className="header">Resume page</a>
                                         <div className="description">
                                             Full stack resume page, that is developed in my free time,
                                             Deployed with docker. As today: Todo app, application with random jokes
@@ -328,6 +328,8 @@ const Home = () => {
                                 <div className="column">DJANGO</div>
                                 <div className="column">FASTAPI</div>
                                 <div className="column">FLASK</div>
+                                <div className="column">POSTGRESQL</div>
+                                <div className="column">DOCKER</div>
                                 <div className="column">RESTAPI</div>
                                 <div className="column">JAVASCRIPT</div>
                                 <div className="column">REACT</div>
