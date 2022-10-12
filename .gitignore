@@ -6,6 +6,11 @@ frontend/node_modules
 backend/passwords.py
 /.pnp
 .pnp.js
+node_modules
+node_modules/
+/node_modules/
+.node_modules/
+/node_modules
 
 # testing
 /coverage
