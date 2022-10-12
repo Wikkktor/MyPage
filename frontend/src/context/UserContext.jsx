@@ -14,7 +14,7 @@ export const UserProvider = (props) => {
                     Authorization: "Bearer " + token,
                 },
             };
-            const response = await fetch("/api/users/", requestOptions)
+            const response = await fetch("https://wikkktor.herokuapp.com/api/users/", requestOptions)
             if (!response.ok) {
                 setToken(null)
             }

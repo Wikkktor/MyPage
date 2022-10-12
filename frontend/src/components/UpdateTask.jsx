@@ -23,7 +23,7 @@ const UpdateTask = (task) => {
                 priority: updatePriority,
             })
         };
-        const response = await fetch(`/api/todos/${task.task.id}`, requestOptions);
+        const response = await fetch(`https://wikkktor.herokuapp.com/api/todos/${task.task.id}`, requestOptions);
         const data = await response.json()
         if (!response.ok) {
             setErrorMessage(data.detail)

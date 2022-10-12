@@ -21,7 +21,7 @@ const RegisterPage = () => {
                 password: password,
             })
         };
-        const response = await fetch("/api/users/", requestOptions);
+        const response = await fetch("https://wikkktor.herokuapp.com/api/users/", requestOptions);
         const data = await response.json()
 
         if (!response.ok) {

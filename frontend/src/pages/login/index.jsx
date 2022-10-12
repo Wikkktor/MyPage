@@ -18,7 +18,7 @@ const Login = () => {
                 `grant_type=&username=${username}&password=${password}&scope=&client_id=&client_secret=`
             )
         };
-        const response = await fetch("/api/auth/token", requestOptions);
+        const response = await fetch("https://wikkktor.herokuapp.com/api/auth/token", requestOptions);
         const data = await response.json();
 
         if (!response.ok) {

@@ -19,7 +19,7 @@ const AddTask = () => {
                 priority: priority,
             })
         };
-        const response = await fetch("/api/todos/", requestOptions);
+        const response = await fetch("https://wikkktor.herokuapp.com/api/todos/", requestOptions);
         const data = await response.json()
 
         if (!response.ok) {

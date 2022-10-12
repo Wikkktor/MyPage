@@ -11,7 +11,7 @@ const DeleteTask = (task) => {
                 Authorization: "Bearer " + token,
             },
         };
-        await fetch(`/api/todos/${task.task.id}`, requestOptions);
+        await fetch(`https://wikkktor.herokuapp.com/api/todos/${task.task.id}`, requestOptions);
 
     }
 

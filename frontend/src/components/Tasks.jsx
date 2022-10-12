@@ -15,7 +15,7 @@ const Tasks = () => {
                 Authorization: "Bearer " + token,
             }
         };
-        const response = await fetch('/api/todos/', requestOptions);
+        const response = await fetch('https://wikkktor.herokuapp.com/api/todos/', requestOptions);
         const data = await response.json()
         setTasks(data)
 
