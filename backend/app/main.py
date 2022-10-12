@@ -3,9 +3,20 @@ from fastapi.templating import Jinja2Templates
 from app import models
 from app.database import engine
 from app.routers import auth, todos, users
+from fastapi.middleware.cors import CORSMiddleware
 
 root_router = APIRouter()
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.include_router(auth.router)
 app.include_router(users.router)
