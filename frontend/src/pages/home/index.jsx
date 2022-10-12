@@ -9,6 +9,7 @@ import danky from '../../assets/danky.png';
 import salony from '../../assets/salony.png';
 import auschwitz from '../../assets/auschwitz.png';
 import uzyjto from '../../assets/uzyjto.png';
+import mypage from '../../assets/mypage.png'
 import ErrorMessage from "../../components/ErrorMessage";
 import {UserContext} from "../../context/UserContext";
 
@@ -275,6 +276,25 @@ const Home = () => {
                                     <div className="extra content">
                                     <span>
                                         Django, jQuery, JavaScript, Bootstrap5, Multilingual
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='column'>
+                                <div className="ui card">
+                                    <div className="image">
+                                        <img alt='mypage' src={mypage}/>
+                                    </div>
+                                    <div className="content">
+                                        <a href='https://auschwitzcracow.com' className="header">Resume page</a>
+                                        <div className="description">
+                                            Full stack resume page, that is developed in my free time,
+                                            Deployed with docker. As today: Todo app, application with random jokes
+                                        </div>
+                                    </div>
+                                    <div className="extra content">
+                                    <span>
+                                        FastAPI, React, JWT
                                     </span>
                                     </div>
                                 </div>
