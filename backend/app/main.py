@@ -1,9 +1,8 @@
 from fastapi import FastAPI, APIRouter, Request
 from fastapi.templating import Jinja2Templates
-import models
-from database import engine
-from routers import auth, users, todos
-
+from app import models
+from app.database import engine
+from app.routers import auth, todos, users
 
 root_router = APIRouter()
 app = FastAPI()

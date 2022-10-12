@@ -2,13 +2,15 @@ from fastapi import Depends, HTTPException, status, APIRouter
 from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from typing import Optional
-from database import get_db
-from models import Users
-from schema import Token
+from app.database import get_db
+from app.models import Users
+from app.schema import Token
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from jose import jwt, JWTError
-from passwords import SECRET_KEY, ALGORITHM
+from passwords import TOKEN, ALGORYTM
+
+
 
 router = APIRouter(
     prefix="/api/auth",
@@ -52,7 +54,7 @@ def create_access_token(*, sub: str, expires_delta: Optional[timedelta] = None):
 
 async def get_current_user(token: str = Depends(oauth2_bearer)):
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(token, TOKEN, algorithms=[ALGORYTM])
         user_id: int = payload.get('sub')
         if user_id is None:
             raise get_user_exception()
@@ -75,7 +77,7 @@ def create_token(
     payload["exp"] = expire
     payload["iat"] = datetime.utcnow()
     payload["sub"] = str(sub)
-    return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
+    return jwt.encode(payload, TOKEN, algorithm=ALGORYTM)
 
 
 @router.post("/token", response_model=Token)
