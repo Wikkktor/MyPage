@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import DeleteTask from "./DeleteTask";
 import UpdateTask from "./UpdateTask";
-import {UserContext} from "../context/UserContext";
+import {UserContext} from "../../context/UserContext";
 
 const Tasks = () => {
     const [token] = useContext(UserContext);

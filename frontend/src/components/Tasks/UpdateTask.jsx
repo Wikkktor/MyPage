@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
-import ErrorMessage from "./ErrorMessage";
-import {UserContext} from "../context/UserContext";
+import ErrorMessage from "../UI/ErrorMessage";
+import {UserContext} from "../../context/UserContext";
 
 
 const UpdateTask = (task) => {
