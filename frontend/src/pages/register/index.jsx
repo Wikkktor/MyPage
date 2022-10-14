@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 
 import {UserContext} from "../../context/UserContext";
-import ErrorMessage from "../../components/ErrorMessage";
+import ErrorMessage from "../../components/UI/ErrorMessage";
 import {useNavigate} from "react-router-dom";
 
 const RegisterPage = () => {
@@ -93,7 +93,7 @@ const RegisterPage = () => {
                         </div>
                         <ErrorMessage message={errorMessage}/>
                         <div style={{width: '100%', textAlign: 'center'}}>
-                                    <button className="ui button" type="submit">Register</button>
+                                    <button className="ui inverted button" type="submit">Register</button>
                                 </div>
                     </form>
                 </div>

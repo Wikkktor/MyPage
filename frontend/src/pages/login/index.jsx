@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import {UserContext} from "../../context/UserContext";
-import ErrorMessage from "../../components/ErrorMessage";
+import ErrorMessage from "../../components/UI/ErrorMessage";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -75,7 +75,7 @@ const Login = () => {
                                     <ErrorMessage message={errorMessage}/>
                                 </div>
                                 <div style={{width: '100%', textAlign: 'center'}}>
-                                    <button className="ui button" type="submit">Login</button>
+                                    <button className="ui inverted button" type="submit">Login</button>
                                 </div>
                             </form>
                         </div>

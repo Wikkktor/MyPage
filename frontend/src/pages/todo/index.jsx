@@ -1,8 +1,8 @@
 import React, {useContext} from "react";
 import {useNavigate} from "react-router-dom";
 import {UserContext} from "../../context/UserContext";
-import AddTask from "../../components/AddTask";
-import Tasks from "../../components/Tasks";
+import AddTask from "../../components/Tasks/AddTask";
+import Tasks from "../../components/Tasks/Tasks";
 
 const Todo = () => {
     const navigate = useNavigate()
