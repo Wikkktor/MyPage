@@ -1,11 +1,11 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import DeleteTask from "./DeleteTask";
 import UpdateTask from "./UpdateTask";
 import {UserContext} from "../context/UserContext";
 
 const Tasks = () => {
-    const [token] = useContext(UserContext)
-    const [tasks, setTasks] = useState(null)
+    const [token] = useContext(UserContext);
+    const [tasks, setTasks] = useState(null);
 
     async function getTasks() {
         const requestOptions = {
@@ -20,10 +20,7 @@ const Tasks = () => {
         setTasks(data)
 
     }
-
-    useEffect(() => {
-        getTasks()
-    }, [getTasks])
+    getTasks();
 
     if (tasks) {
         return (
