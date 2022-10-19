@@ -1,16 +1,9 @@
-import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
+import React from "react";
 import AddTask from "../../components/Tasks/AddTask";
 import Tasks from "../../components/Tasks/Tasks";
 
 const Todo = () => {
-  const navigate = useNavigate();
-  const [token] = useContext(UserContext);
 
-  if (!token) {
-    navigate("/login");
-  } else {
     return (
       <>
         <section className="todoapp">
@@ -23,5 +16,4 @@ const Todo = () => {
       </>
     );
   }
-};
 export default Todo;
