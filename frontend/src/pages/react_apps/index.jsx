@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import {useNavigate} from "react-router-dom";
+import todoapp from '../../assets/todoapp.jpg'
+import foodapp from '../../assets/food-app.jpg'
 
 const ReactApps = () => {
   const [token] = useContext(UserContext);
@@ -18,8 +20,8 @@ const ReactApps = () => {
         <div className="ui special cards grid stackable three column">
           <div className="column">
             <div className="ui card">
-              <div className="image">
-                <img alt="beautybon" />
+              <div className="image" style={{cursor:'pointer'}}>
+                <img alt="todoapp" src={todoapp} onClick={() =>navigate('/todo') } />
               </div>
               <div className="content">
                 <a href="/todo" className="header center">
@@ -28,7 +30,7 @@ const ReactApps = () => {
               </div>
             </div>
           </div>
-          <div className="column">
+          {/* <div className="column">
             <div className="ui card">
               <div className="image">
                 <img alt="beautybon" />
@@ -39,11 +41,11 @@ const ReactApps = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="column">
             <div className="ui card">
-              <div className="image">
-                <img alt="beautybon" />
+              <div className="image" style={{cursor:'pointer'}}>
+                <img alt="food-app" onClick={() =>navigate('/food-app') } src={foodapp} />
               </div>
               <div className="content">
                 <a href="/food-app" className="header center">

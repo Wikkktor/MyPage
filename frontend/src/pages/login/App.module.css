@@ -1,0 +1,15 @@
+.container {
+    max-width: 600px;
+    margin: 30vh auto;
+    background: #240046;
+    width: 90%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 0px 20px 10px rgb(255 255 255 / 21%)
+}
+.container a {
+    color: white;
+    text-decoration: underline;
+    font-size: 18px;
+    line-height: 35px;
+}
