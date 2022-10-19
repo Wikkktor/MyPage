@@ -281,7 +281,7 @@ const Home = () => {
               <PortfolioBlock
                 name="React Apps"
                 image={mypage}
-                href="https://wiktorkaraszewicz.herokuapp.com/"
+                href="https://wiktorkaraszewicz.herokuapp.com/react-apps"
                 description="My resume page is made in react and has some sample react
                 projects. It is necessary to log in, because the
                 applications rely on a database connection."
@@ -357,7 +357,7 @@ const Home = () => {
                     </div>
                     <ErrorMessage message={reply} />
                     <div style={{ width: "100%", textAlign: "center" }}>
-                      <button className="ui inverted button" type="submit">
+                      <button disabled='true' className="ui inverted button" type="submit">
                         Send
                       </button>
                     </div>

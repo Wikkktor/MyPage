@@ -1,15 +1,10 @@
-import React, { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
+import React from "react";
 import {useNavigate} from "react-router-dom";
 import todoapp from '../../assets/todoapp.jpg'
 import foodapp from '../../assets/food-app.jpg'
 
 const ReactApps = () => {
-  const [token] = useContext(UserContext);
   const navigate = useNavigate()
-  if (!token) {
-    navigate("/login");
-  }
 
   return (
     <>

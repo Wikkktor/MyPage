@@ -13,3 +13,6 @@
     font-size: 18px;
     line-height: 35px;
 }
+.container label {
+    color: white!important;
+}
