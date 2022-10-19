@@ -357,7 +357,7 @@ const Home = () => {
                     </div>
                     <ErrorMessage message={reply} />
                     <div style={{ width: "100%", textAlign: "center" }}>
-                      <button disabled='true' className="ui inverted button" type="submit">
+                      <button disabled={true} className="ui inverted button" type="submit">
                         Send
                       </button>
                     </div>
