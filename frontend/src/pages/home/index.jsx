@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import Navbar from "../../components/UI/navbar";
-import Footer from "../../components/UI/Footer";
+import Navbar from "../../components/Layout/Navbar";
+import Footer from "../../components/Layout/Footer";
 import ErrorMessage from "../../components/UI/ErrorMessage";
 import { Link } from "react-router-dom";
 import "./App.css";

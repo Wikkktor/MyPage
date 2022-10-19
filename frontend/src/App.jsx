@@ -5,6 +5,7 @@ import RegisterPage from "./pages/register";
 import TodoPage from "./pages/todo"
 import Expenses from "./pages/expenses";
 import ReactApps from "./pages/react_apps"
+import FoodApp from "./pages/food-app";
 
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
@@ -20,8 +21,7 @@ const App = () => {
                 <Route path='react-apps' element={<ReactApps/>} />
                 <Route path='/todo' element={<TodoPage/>}/>
                 <Route path='/expenses' element={<Expenses/>} />
-
-
+                <Route path='/food-app' element={<FoodApp/>} />
             </Routes>
         </BrowserRouter>
     )
