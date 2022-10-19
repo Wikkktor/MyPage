@@ -2,8 +2,10 @@ import React, {useContext, useState} from "react";
 import DeleteTask from "./DeleteTask";
 import UpdateTask from "./UpdateTask";
 import {UserContext} from "../../context/UserContext";
+import { useEffect } from "react";
 
 const Tasks = () => {
+    console.log('tasks')
     const [token] = useContext(UserContext);
     const [tasks, setTasks] = useState(null);
 
@@ -20,7 +22,9 @@ const Tasks = () => {
         setTasks(data)
 
     }
-    getTasks();
+    useEffect(() => {
+        getTasks()
+    }, [tasks])
 
     if (tasks) {
         return (
