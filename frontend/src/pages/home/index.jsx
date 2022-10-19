@@ -12,6 +12,9 @@ import auschwitz from "../../assets/auschwitz.png";
 import uzyjto from "../../assets/uzyjto.png";
 import mypage from "../../assets/mypage.png";
 import { UserContext } from "../../context/UserContext";
+import PortfolioBlock from "../../components/UI/PortfolioBlock";
+import EducationBlock from "../../components/UI/EducationBlock";
+import SkillsBlock from "../../components/UI/SkillsBlock";
 
 const Home = () => {
   const [email, setEmail] = useState("");
@@ -156,7 +159,10 @@ const Home = () => {
                       style={{ justifyContent: "space-between" }}
                     >
                       <h2 className="ui header">Junior Web Developer</h2>
-                      <h4 style={{ margin: "0", textAlign: 'right' }} className="ui header">
+                      <h4
+                        style={{ margin: "0", textAlign: "right" }}
+                        className="ui header"
+                      >
                         January 2022 - now
                       </h4>
                     </div>
@@ -186,7 +192,10 @@ const Home = () => {
                       style={{ justifyContent: "space-between" }}
                     >
                       <h2 className="ui header">Webshop Administrator</h2>
-                      <h4 style={{ margin: "0", textAlign: 'right' }} className="ui header">
+                      <h4
+                        style={{ margin: "0", textAlign: "right" }}
+                        className="ui header"
+                      >
                         May 2021 - September 2021
                       </h4>
                     </div>
@@ -214,162 +223,86 @@ const Home = () => {
               Portfolio <i className="code icon"></i>
             </h1>
             <div className="ui special cards grid stackable three column">
-              <div className="column">
-                <div className="ui card">
-                  <div className="image">
-                    <img alt="beautybon" src={beautybon} />
-                  </div>
-                  <div className="content">
-                    <a href="https://beautybon.pl" className="header">
-                      BeautyBon
-                    </a>
-                    <div className="description">
-                      The application creates named vouchers that are for later
-                      use. It has a panel for sellers where, based on a unique
-                      code, the voucher can be set as used.Kristy is an art
-                      director living in New York.
-                    </div>
-                  </div>
-                  <div className="extra content">
-                    <span>Django, Semantic Ui, JavaScript, PostgreSQL</span>
-                  </div>
-                </div>
-              </div>
-              <div className="column">
-                <div className="ui card">
-                  <div className="image">
-                    <img alt="uzyjto" src={uzyjto} />
-                  </div>
-                  <div className="content">
-                    <a href="https://uzyj.to" className="header">
-                      uzyj.to
-                    </a>
-                    <div className="description">
-                      Invented by a group of architects, the portal for
-                      displaying leftover materials after construction or
-                      renovation. The idea behind the app is to promote the eco
-                      movement. It has filtered offers by location with radius
-                      and chat so you can find materials near your location and
-                      contact the seller.
-                    </div>
-                  </div>
-                  <div className="extra content">
-                    <span>
-                      Django, Semantic Ui, JavaScript, PostgreSQL, PostGIS, Ajax
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="column">
-                <div className="ui card">
-                  <div className="image">
-                    <img alt="salonypiekna" src={salony} />
-                  </div>
-                  <div className="content">
-                    <a href="https://salonypiekna.pl" className="header">
-                      Salony piękna
-                    </a>
-                    <div className="description">
-                      Logged in user can add his own beauty salon or find places
-                      in that kind in his area. Application gives flexible
-                      possibilities to add an advertisement in the desired
-                      location, for example: on the city page or province or
-                      category in the certain city.
-                    </div>
-                  </div>
-                  <div className="extra content">
-                    <span>Django, MySQL, JavaScript, Bootstrap5</span>
-                  </div>
-                </div>
-              </div>
-              <div className="column">
-                <div className="ui card">
-                  <div className="image">
-                    <img alt="danky" src={danky} />
-                  </div>
-                  <div className="content">
-                    <a href="https://danky.pl" className="header">
-                      Danky
-                    </a>
-                    <div className="description">
-                      Marketplace for branded items, focused on shoes. A safe
-                      place for resellers of clothes and shoes that earns
-                      commissions from transactions. Online chat allows quick
-                      contact between potential buyers and sellers.
-                    </div>
-                  </div>
-                  <div className="extra content">
-                    <span>Django, PostgreSQL, JavaScript, Ajax</span>
-                  </div>
-                </div>
-              </div>
-              <div className="column">
-                <div className="ui card">
-                  <div className="image">
-                    <img alt="auschwitz" src={auschwitz} />
-                  </div>
-                  <div className="content">
-                    <a href="https://auschwitzcracow.com" className="header">
-                      Auschwitzcracow
-                    </a>
-                    <div className="description">
-                      The app gives you the ability to choose the date, options
-                      and language of the tour based on the information's
-                      provided in dedicated admin panel. Created in two
-                      languages.
-                    </div>
-                  </div>
-                  <div className="extra content">
-                    <span>
-                      Django, jQuery, JavaScript, Bootstrap5, Multilingual
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="column">
-                <div className="ui card">
-                  <div className="image">
-                    <img alt="mypage" src={mypage} />
-                  </div>
-                  <div className="content">
-                    <a
-                      href="https://wiktorkaraszewicz.herokuapp.com/"
-                      className="header"
-                    >
-                      React App
-                    </a>
-                    <div className="description">
-                    My resume page is made in react and has some sample react projects.
-                    It is necessary to log in, because the applications rely on a database connection.
-                    </div>
-                  </div>
-                  <div className="extra content">
-                    <span>FastAPI, React, Redux, JWT</span>
-                  </div>
-                </div>
-              </div>
+              <PortfolioBlock
+                name="Beautybon"
+                image={beautybon}
+                href="https://beautybon.pl"
+                description="The application creates named vouchers that are for later
+              use. It has a panel for sellers where, based on a unique
+              code, the voucher can be set as used."
+                tech="Django, Semantic Ui, JavaScript, PostgreSQL"
+              />
+
+              <PortfolioBlock
+                name="Użyjto"
+                image={uzyjto}
+                href="https://uzyj.to"
+                description="Invented by a group of architects, the portal for
+                displaying leftover materials after construction or
+                renovation. The idea behind the app is to promote the eco
+                movement. It has filtered offers by location with radius
+                and chat so you can find materials near your location and
+                contact the seller."
+                tech="Django, Semantic Ui, JavaScript, PostgreSQL, PostGIS, Ajax"
+              />
+
+              <PortfolioBlock
+                name="Salony piękna"
+                image={salony}
+                href="https://salonypiekna.pl"
+                description="Logged in user can add his own beauty salon or find places
+                in that kind in his area. Application gives flexible
+                possibilities to add an advertisement in the desired
+                location, for example: on the city page or province or
+                category in the certain city."
+                tech="Django, MySQL, JavaScript, Bootstrap5"
+              />
+
+              <PortfolioBlock
+                name="Danky"
+                image={danky}
+                href="https://danky.pl"
+                description="Marketplace for branded items, focused on shoes. A safe
+                place for resellers of clothes and shoes that earns
+                commissions from transactions. Online chat allows quick
+                contact between potential buyers and sellers."
+                tech="Django, PostgreSQL, JavaScript, Ajax"
+              />
+              <PortfolioBlock
+                name="Auschwitzcracow"
+                image={auschwitz}
+                href="https://auschwitzcracow.com"
+                description="The app gives you the ability to choose the date, options
+                and language of the tour based on the information's
+                provided in dedicated admin panel. Created in two
+                languages."
+                tech="Django, jQuery, JavaScript, Bootstrap5, Multilingual, PostgreSQL"
+              />
+              <PortfolioBlock
+                name="React Apps"
+                image={mypage}
+                href="https://wiktorkaraszewicz.herokuapp.com/"
+                description="My resume page is made in react and has some sample react
+                projects. It is necessary to log in, because the
+                applications rely on a database connection."
+                tech="FastAPI, React, Redux, JWT"
+              />
             </div>
           </div>
           <div id="education" className="ui container big-margin">
             <h1 className="ui header">
               Education <i className="graduation cap icon"></i>
             </h1>
-            <div className="ui raised segment">
-              <div className="mytext">
-                <h3 className="ui header">
-                  Polish-Japanese Academy of Information Technology
-                </h3>
-                <h4 className="ui header no-m">2022 - 2026 Engineer</h4>
-                Faculty of Computer Science, Warsaw, Poland.
-              </div>
-            </div>
-            <div className="ui raised segment">
-              <div className="mytext">
-                <h3 className="ui header">Lazarski University</h3>
-                <h4 className="ui header no-m">2020 - 2023 Bachelor</h4>
-                Faculty of Economics, Warsaw, Poland.
-              </div>
-            </div>
+            <EducationBlock
+              header="Polish-Japanese Academy of Information Technology"
+              years="2022 - 2026 Engineer"
+              description="Faculty of Computer Science, Warsaw, Poland."
+            />
+            <EducationBlock
+              header="Lazarski University"
+              years="2020 - 2023 Bachelor"
+              description="Faculty of Economics, Warsaw, Poland."
+            />
           </div>
 
           <div id="skills" className="ui container big-margin">
@@ -378,19 +311,20 @@ const Home = () => {
             </h1>
             <div className="ui grid">
               <div className="stackable eight very relaxed  column row">
-                <div className="column">PYTHON</div>
-                <div className="column">DJANGO</div>
-                <div className="column">FASTAPI</div>
-                <div className="column">FLASK</div>
-                <div className="column">POSTGRESQL</div>
-                <div className="column">DOCKER</div>
-                <div className="column">RESTAPI</div>
-                <div className="column">JAVASCRIPT</div>
-                <div className="column">REACT</div>
-                <div className="column">HTML5</div>
-                <div className="column">CSS3</div>
-                <div className="column">BOOTSTRAP</div>
-                <div className="column">SEMANTIC UI</div>
+                <SkillsBlock>PYTHON</SkillsBlock>
+                <SkillsBlock>DJANGO</SkillsBlock>
+                <SkillsBlock>FASTAPI</SkillsBlock>
+                <SkillsBlock>FLASK</SkillsBlock>
+                <SkillsBlock>POSTGRESQL</SkillsBlock>
+                <SkillsBlock>DOCKER</SkillsBlock>
+                <SkillsBlock>RESTAPI</SkillsBlock>
+                <SkillsBlock>JAVASCRIPT</SkillsBlock>
+                <SkillsBlock>REACT</SkillsBlock>
+                <SkillsBlock>REDUX</SkillsBlock>
+                <SkillsBlock>HTML5</SkillsBlock>
+                <SkillsBlock>CSS3</SkillsBlock>
+                <SkillsBlock>BOOTSTRAP</SkillsBlock>
+                <SkillsBlock>SEMANTIC UI</SkillsBlock>
               </div>
             </div>
           </div>
