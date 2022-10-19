@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import ErrorMessage from "../UI/ErrorMessage";
 import {UserContext} from "../../context/UserContext";
-
+import { createPortal } from "react-dom";
 
 const UpdateTask = (task) => {
     const [updateTitle, setUpdateTitle] = useState(task.task ? task.task.title : "")
@@ -48,14 +48,14 @@ const UpdateTask = (task) => {
             <i style={{color: 'black', cursor: 'pointer'}} className="edit icon" onClick={() => {
                 setOpenModal(true)
             }}></i>
-            {openModal &&
+            {createPortal(openModal &&
                 <div className='my-modal'>
                     <div className='modal-container'>
                         <div style={{display:"flex"}}>
-                            <i className="close icon" onClick={() => {
+                            <i className="close icon" style={{color:'black'}} onClick={() => {
                                 setOpenModal(false)
                             }}></i>
-                            <h2 style={{margin:0}}>
+                            <h2 style={{margin:0, color:'black'}}>
                                 Update your task
                             </h2>
                         </div>
@@ -84,8 +84,8 @@ const UpdateTask = (task) => {
                             </div>
                         </form>
                     </div>
-                </div>
-            }
+                </div>, document.getElementById("overlays")
+            )}
         </>
     )
 }
