@@ -21,6 +21,7 @@ const Home = () => {
   const [message, setMessage] = useState("");
   const [reply, setReply] = useState("");
   const [token] = useContext(UserContext);
+  const [navbarToggle, setNavbarToggle] = useState(false);
 
   const submitContact = async () => {
     const requestOptions = {
@@ -41,6 +42,14 @@ const Home = () => {
     submitContact();
   };
 
+  const handleToggle = () => {
+    setNavbarToggle(!navbarToggle);
+  };
+
+  let navbarToggleClass = navbarToggle
+    ? "topnav responsive only_mobile"
+    : "topnav only_mobile";
+
   return (
     <>
       <section>
@@ -48,7 +57,52 @@ const Home = () => {
         <div className="pusher">
           <div className="ui inverted vertical masthead center aligned segment">
             <div className="ui container">
-              <div className="ui large secondary inverted pointing menu">
+              <div className={navbarToggleClass} id="myTopnav">
+                {!token ? (
+                  <div className="active">
+                    <a href="/#root">Home</a>
+                  </div>
+                ) : (
+                  <div className="active">
+                    <Link to="/react-apps">React Apps</Link>
+                  </div>
+                )}
+
+                <a href="/#about_me" className="item">
+                  About me
+                </a>
+                <a href="/#experience" className="item">
+                  Experience
+                </a>
+                <a href="/#portfolio" className="item">
+                  Portfolio
+                </a>
+                <a href="/#education" className="item">
+                  Education
+                </a>
+                <a href="/#skills" className="item">
+                  Skills
+                </a>
+                <a href="/#skills" className="item">
+                  Contact
+                </a>
+                {!token ? (
+                  <>
+                  <a href="/login" className="item">
+                  Log in
+                </a>
+                <a href="/register" className="item">
+                  Sign Up
+                </a>
+                </>
+                ) : (
+                    <a href="/react-apps" className="item">React Apps</a>
+                )}
+                <a href="javascript:;" className="icon" onClick={handleToggle}>
+                  &#9776;
+                </a>
+              </div>
+              <div className="ui large secondary inverted pointing menu only_desktop">
                 <a href="/#" className="toc item">
                   <i className="sidebar icon"></i>
                 </a>
@@ -357,7 +411,11 @@ const Home = () => {
                     </div>
                     <ErrorMessage message={reply} />
                     <div style={{ width: "100%", textAlign: "center" }}>
-                      <button disabled={true} className="ui inverted button" type="submit">
+                      <button
+                        disabled={true}
+                        className="ui inverted button"
+                        type="submit"
+                      >
                         Send
                       </button>
                     </div>
