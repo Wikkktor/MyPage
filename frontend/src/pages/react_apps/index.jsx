@@ -2,7 +2,7 @@ import React from "react";
 import {useNavigate} from "react-router-dom";
 import todoapp from '../../assets/todoapp.jpg'
 import foodapp from '../../assets/food-app.jpg'
-
+import AppBlock from "../../components/UI/AppBlock";
 const ReactApps = () => {
   const navigate = useNavigate()
 
@@ -13,42 +13,18 @@ const ReactApps = () => {
           React Apps <i className="react icon"></i>
         </h1>
         <div className="ui special cards grid stackable three column">
-          <div className="column">
-            <div className="ui card">
-              <div className="image" style={{cursor:'pointer'}}>
-                <img alt="todoapp" src={todoapp} onClick={() =>navigate('/todo') } />
-              </div>
-              <div className="content">
-                <a href="/todo" className="header center">
-                  TODO APP
-                </a>
-              </div>
-            </div>
-          </div>
-          {/* <div className="column">
-            <div className="ui card">
-              <div className="image">
-                <img alt="beautybon" />
-              </div>
-              <div className="content">
-                <a href="/expenses" className="header center">
-                  EXPENSES TRACKER
-                </a>
-              </div>
-            </div>
-          </div> */}
-          <div className="column">
-            <div className="ui card">
-              <div className="image" style={{cursor:'pointer'}}>
-                <img alt="food-app" onClick={() =>navigate('/food-app') } src={foodapp} />
-              </div>
-              <div className="content">
-                <a href="/food-app" className="header center">
-                  FOOD-APP
-                </a>
-              </div>
-            </div>
-          </div>
+          <AppBlock 
+          source={todoapp}
+          link='/todo'
+          title='TODO APP'
+          />
+
+          <AppBlock 
+          source={foodapp}
+          link='/food-app'
+          title='FOOD-APP'
+          />
+
         </div>
       </div>
     </>
