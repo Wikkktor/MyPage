@@ -1,10 +1,8 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
 import todoapp from '../../assets/todoapp.jpg'
 import foodapp from '../../assets/food-app.jpg'
 import AppBlock from "../../components/UI/AppBlock";
 const ReactApps = () => {
-  const navigate = useNavigate()
 
   return (
     <>
