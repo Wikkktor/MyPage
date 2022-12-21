@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional
 from fastapi import APIRouter, Depends
 from .auth import get_user_exception, get_password_hash, get_current_user, authenticate, create_access_token
 from app import schema
@@ -13,7 +13,7 @@ router = APIRouter(
 )
 
 
-@router.get("/")
+@router.get("/", status_code=200)
 def get_logged_in_user(
         db: Session = Depends(get_db),
         user: dict = Depends(get_current_user),
@@ -80,7 +80,7 @@ async def update_user(
     return success()
 
 
-@router.delete("/")
+@router.delete("/", status_code=200)
 def delete_logged_in_user(
         db: Session = Depends(get_db),
         user: dict = Depends(get_current_user),
@@ -103,7 +103,7 @@ def delete_logged_in_user(
 
 
 # TODO: Only for admins or users with permission
-@router.delete("/{user_id}")
+@router.delete("/{user_id}", status_code=200)
 def delete_user(
         user_id: int,
         db: Session = Depends(get_db)
@@ -123,7 +123,7 @@ def delete_user(
     return success(200)
 
 
-@router.get("/all")
+@router.get("/all", status_code=200)
 def get_all_users(
         db: Session = Depends(get_db)
 ):

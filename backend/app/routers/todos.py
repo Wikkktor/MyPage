@@ -1,6 +1,6 @@
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, status
-from .auth import get_user_exception, get_password_hash, get_current_user
+from .auth import get_user_exception, get_current_user
 from app import schema
 from app import models
 from app.database import get_db
@@ -13,7 +13,7 @@ router = APIRouter(
 )
 
 
-@router.get("/")
+@router.get("/", status_code=status.HTTP_200_OK)
 def get_todos(
         db: Session = Depends(get_db),
         user: dict = Depends(get_current_user),
@@ -23,7 +23,7 @@ def get_todos(
     return db.query(models.Todos).filter(models.Todos.owner_id == int(user.get("id"))).all()
 
 
-@router.post("/")
+@router.post("/", status_code=status.HTTP_201_CREATED)
 def create_todo(
         todo: schema.Todo,
         db: Session = Depends(get_db),
@@ -31,16 +31,13 @@ def create_todo(
 ):
     if user is None:
         raise get_user_exception()
-    todo_model = models.Todos()
-    todo_model.title = todo.title
-    todo_model.priority = todo.priority
-    todo_model.owner_id = user.get("id")
+    todo_model = models.Todos(**todo.dict(), owner_id=user.get("id"))
     db.add(todo_model)
     db.commit()
     return success()
 
 
-@router.put("/{todo_id}")
+@router.put("/{todo_id}", status_code=status.HTTP_201_CREATED)
 def update_todo(
         todo: schema.Todo,
         todo_id: int,
@@ -61,7 +58,7 @@ def update_todo(
     return success()
 
 
-@router.delete('/{todo_id}')
+@router.delete('/{todo_id}', status_code=status.HTTP_200_OK)
 def delete_todo(
         todo_id: int,
         db: Session = Depends(get_db),

@@ -3,6 +3,7 @@ from fastapi.templating import Jinja2Templates
 from app import models
 from app.database import engine
 from app.routers import auth, todos, users
+from .schema import *
 from fastapi.middleware.cors import CORSMiddleware
 
 root_router = APIRouter()
@@ -29,11 +30,18 @@ TEMPLATES = Jinja2Templates(directory="templates")
 @app.get('/api', status_code=200)
 async def test(
         request: Request
-        ):
+):
     """
     Root get
     """
     return {"message": "Test success!"}
+
+
+# FOR LEARNING / EXERCISING PURPOSES
+
+@app.post("/user/", response_model=UserOut, status_code=201)
+async def _create_user(user: UserIn):
+    return user
 
 
 if __name__ == "__main__":

@@ -80,7 +80,7 @@ def create_token(
     return jwt.encode(payload, TOKEN, algorithm=ALGORYTM)
 
 
-@router.post("/token", response_model=Token)
+@router.post("/token", response_model=Token, status_code=201)
 def login(
         db: Session = Depends(get_db), form_data: OAuth2PasswordRequestForm = Depends()
 ):

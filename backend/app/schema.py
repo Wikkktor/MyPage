@@ -1,5 +1,5 @@
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr
 
 
 class User(BaseModel):
@@ -15,3 +15,19 @@ class Todo(BaseModel):
 class Token(BaseModel):
     access_token: str
     token_type: str
+
+
+# FOR LEARNING / EXERCISING PURPOSES
+
+
+class UserIn(BaseModel):
+    username: str
+    password: str
+    email: EmailStr
+    full_name: str | None = None
+
+
+class UserOut(BaseModel):
+    username: str
+    email: EmailStr
+    full_name: str | None = None
