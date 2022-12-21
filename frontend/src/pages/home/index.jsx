@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import Navbar from "../../components/Layout/Navbar";
 import Footer from "../../components/Layout/Footer";
 import ErrorMessage from "../../components/UI/ErrorMessage";
@@ -11,7 +11,6 @@ import salony from "../../assets/salony.png";
 import auschwitz from "../../assets/auschwitz.png";
 import uzyjto from "../../assets/uzyjto.png";
 import mypage from "../../assets/mypage.png";
-import { UserContext } from "../../context/UserContext";
 import PortfolioBlock from "../../components/UI/PortfolioBlock";
 import EducationBlock from "../../components/UI/EducationBlock";
 import SkillsBlock from "../../components/UI/SkillsBlock";
@@ -20,7 +19,6 @@ const Home = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [reply, setReply] = useState("");
-  const [token] = useContext(UserContext);
   const [navbarToggle, setNavbarToggle] = useState(false);
 
   const submitContact = async () => {
@@ -58,16 +56,9 @@ const Home = () => {
           <div className="ui inverted vertical masthead center aligned segment">
             <div className="ui container">
               <div className={navbarToggleClass} id="myTopnav">
-                {!token ? (
                   <div className="active">
                     <a href="/#root">Home</a>
                   </div>
-                ) : (
-                  <div className="active">
-                    <Link to="/react-apps">React Apps</Link>
-                  </div>
-                )}
-
                 <a href="/#about_me" className="item">
                   About me
                 </a>
@@ -86,18 +77,6 @@ const Home = () => {
                 <a href="/#skills" className="item">
                   Contact
                 </a>
-                {!token ? (
-                  <>
-                  <a href="/login" className="item">
-                  Log in
-                </a>
-                <a href="/register" className="item">
-                  Sign Up
-                </a>
-                </>
-                ) : (
-                    <a href="/react-apps" className="item">React Apps</a>
-                )}
                 <a href="javascript:;" className="icon" onClick={handleToggle}>
                   &#9776;
                 </a>
@@ -127,22 +106,6 @@ const Home = () => {
                 <a href="/#skills" className="item">
                   Contact
                 </a>
-                {!token ? (
-                  <div className="right item">
-                    <Link to="/login" className="ui inverted button">
-                      Log in
-                    </Link>
-                    <Link to="/register" className="ui inverted button">
-                      Sign Up
-                    </Link>
-                  </div>
-                ) : (
-                  <div className="right item">
-                    <Link to="/react-apps" className="ui inverted button">
-                      React Apps
-                    </Link>
-                  </div>
-                )}
               </div>
             </div>
             <div className="ui text container">
@@ -332,7 +295,7 @@ const Home = () => {
                 languages."
                 tech="Django, jQuery, JavaScript, Bootstrap5, Multilingual, PostgreSQL"
               />
-              <PortfolioBlock
+              {/* <PortfolioBlock
                 name="React Apps"
                 image={mypage}
                 href="https://wiktorkaraszewicz.herokuapp.com/react-apps"
@@ -340,7 +303,7 @@ const Home = () => {
                 projects. It is necessary to log in, because the
                 applications rely on a database connection."
                 tech="FastAPI, React, Redux, JWT"
-              />
+              /> */}
             </div>
           </div>
           <div id="education" className="ui container big-margin">
