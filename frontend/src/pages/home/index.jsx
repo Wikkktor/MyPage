@@ -1,10 +1,6 @@
-import React, {  useState } from "react";
-import Navbar from "../../components/Layout/Navbar";
-import Footer from "../../components/Layout/Footer";
-import ErrorMessage from "../../components/UI/ErrorMessage";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./App.css";
-import wiktor from "../../assets/wiktor.jpeg";
 import beautybon from "../../assets/beautybon.png";
 import danky from "../../assets/danky.png";
 import salony from "../../assets/salony.png";
@@ -16,29 +12,7 @@ import EducationBlock from "../../components/UI/EducationBlock";
 import SkillsBlock from "../../components/UI/SkillsBlock";
 
 const Home = () => {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [reply, setReply] = useState("");
   const [navbarToggle, setNavbarToggle] = useState(false);
-
-  const submitContact = async () => {
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: email,
-        message: message,
-      }),
-    };
-    const response = await fetch("api/send-email", requestOptions);
-    const data = await response.json();
-    setReply(data.detail);
-  };
-
-  const handleContact = (e) => {
-    e.preventDefault();
-    submitContact();
-  };
 
   const handleToggle = () => {
     setNavbarToggle(!navbarToggle);
@@ -51,14 +25,13 @@ const Home = () => {
   return (
     <>
       <section>
-        <Navbar />
         <div className="pusher">
           <div className="ui inverted vertical masthead center aligned segment">
             <div className="ui container">
               <div className={navbarToggleClass} id="myTopnav">
-                  <div className="active">
-                    <a href="/#root">Home</a>
-                  </div>
+                <div className="active">
+                  <a href="/#root">Home</a>
+                </div>
                 <a href="/#about_me" className="item">
                   About me
                 </a>
@@ -109,12 +82,6 @@ const Home = () => {
               </div>
             </div>
             <div className="ui text container">
-              <img
-                style={{ margin: "4em auto 0" }}
-                className="ui medium circular image"
-                alt="me"
-                src={wiktor}
-              />
               <h1 style={{ marginTop: "0" }} className="ui inverted header">
                 Wiktor Karaszewicz
               </h1>
@@ -147,18 +114,9 @@ const Home = () => {
                   Hi! I am Wiktor Karaszewicz Web developer, I live in Warsaw.
                 </p>
                 <p>
-                  I've been interested in programming since 2020, that's when I
-                  started creating my first sites using html and css and had fun
-                  using inspector to change the content of sites on my computer.
-                </p>
-                <p>
-                  After a year, I started taking programming and IT seriously by
-                  devoting more time to it, gaining experience and learning
-                  Python.
-                </p>
-                <p>
-                  Currently I am a student of IT subjects in English working as
-                  a web developer.
+                  Computer science student with a bachelor's degree in economics
+                  ( currently studying computer science ), Full Stack programmer
+                  since 2022 in the industry since 2021.
                 </p>
               </div>
             </div>
@@ -295,7 +253,7 @@ const Home = () => {
                 languages."
                 tech="Django, jQuery, JavaScript, Bootstrap5, Multilingual, PostgreSQL"
               />
-              {/* <PortfolioBlock
+              <PortfolioBlock
                 name="React Apps"
                 image={mypage}
                 href="https://wiktorkaraszewicz.herokuapp.com/react-apps"
@@ -303,7 +261,7 @@ const Home = () => {
                 projects. It is necessary to log in, because the
                 applications rely on a database connection."
                 tech="FastAPI, React, Redux, JWT"
-              /> */}
+              />
             </div>
           </div>
           <div id="education" className="ui container big-margin">
@@ -345,50 +303,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div id="contact" className="ui container big-margin">
-            <div className="ui stackable grid">
-              <div className="row">
-                <div className="three wide column"></div>
-                <div className="ten wide column">
-                  <h1 className="ui header">
-                    Contact <i className="graduation cap icon"></i>
-                  </h1>
-                  <form className="ui form" onSubmit={handleContact}>
-                    <div className="field">
-                      <label>Your mail</label>
-                      <input
-                        required
-                        type="text"
-                        name="first-name"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
-                    <div className="field">
-                      <label>Your message</label>
-                      <textarea
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        required
-                      ></textarea>
-                    </div>
-                    <ErrorMessage message={reply} />
-                    <div style={{ width: "100%", textAlign: "center" }}>
-                      <button
-                        disabled={true}
-                        className="ui inverted button"
-                        type="submit"
-                      >
-                        Send
-                      </button>
-                    </div>
-                  </form>
-                </div>
-                <div className="three wide column"></div>
-              </div>
-            </div>
-          </div>
-          <Footer />
         </div>
       </section>
     </>
